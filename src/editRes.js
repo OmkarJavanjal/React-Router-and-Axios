@@ -34,6 +34,7 @@ class EditInfo extends Component {
             .then(response => {
                 alert('Title is updated to: ' + this.state.responseObj.title);
                 console.log('Success! ' + JSON.stringify(response));
+                sessionStorage.setItem('responseObj', JSON.stringify(this.state.responseObj));
             })
             .catch(function (error) {
                 console.log(error);

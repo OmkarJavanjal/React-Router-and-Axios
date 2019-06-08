@@ -14,7 +14,15 @@ class HttpDemo extends Component {
             responseObj : {}
         };
 
-        axios.get('https://jsonplaceholder.typicode.com/posts/1')
+       
+        
+    }
+
+    componentWillMount() {
+         if(JSON.parse(sessionStorage.getItem('responseObj'))){
+            this.setState({responseObj : JSON.parse(sessionStorage.getItem('responseObj'))});
+        } else {
+            axios.get('https://jsonplaceholder.typicode.com/posts/1')
             .then(response => {
                 this.setState({responseObj : response.data});
                 console.log('response: ' + JSON.stringify(this.state.responseObj));
@@ -23,6 +31,7 @@ class HttpDemo extends Component {
             .catch(function (error) {
                 console.log(error);
             })
+        }
     }
 
     render() {
